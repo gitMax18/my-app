@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 
 const shoppingListSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    required: [true, "Veuillez entrer un titre pour votre liste de course"],
+  },
   items: [
     {
       title: {
@@ -28,6 +32,7 @@ const shoppingListSchema = new mongoose.Schema({
   creator: {
     type: mongoose.Types.ObjectId,
     ref: "User",
+    required: [true, "Veuillez entrer un 'creator ObjectId' pour cette liste de course"],
   },
   createdAt: {
     type: Date,
