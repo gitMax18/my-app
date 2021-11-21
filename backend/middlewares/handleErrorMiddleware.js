@@ -3,14 +3,14 @@ module.exports = (err, req, res, next) => {
 
   console.log(err.name);
 
-  // if (err.name === "ValidationError") {
-  //   err.message = {};
-  //   err.statusCode = 400;
+  if (err.name === "ValidationError") {
+    err.message = {};
+    err.statusCode = 400;
 
-  //   Object.values(err.errors).forEach(({ properties }) => {
-  //     err.message[properties.path] = properties.message;
-  //   });
-  // }
+    Object.values(err.errors).forEach(({ properties }) => {
+      err.message[properties.path] = properties.message;
+    });
+  }
 
   if (err.code === 11000) {
     err.message = {};
